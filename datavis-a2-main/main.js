@@ -120,25 +120,25 @@ window.onload = () => {
 
     // 6. Tooltip
     circles
-      .on("mouseover", (event, d) => {
-        tooltip
-          .style("opacity", 1)
-          .html(
-            `<strong>${d.name}</strong><br>
-             Type: ${d.type}<br>
-             HP: ${d.hp}<br>
-             Price: $${d3.format(",")(d.retailPrice)}<br>
-             Weight: ${d.weight} lbs`
-          );
-      })
-      .on("mousemove", event => {
-        tooltip
-          .style("left", (event.pageX + 10) + "px")
-          .style("top", (event.pageY + 10) + "px");
-      })
-      .on("mouseout", () => {
-        tooltip.style("opacity", 0);
-      });
+    .on("mouseover", d => {
+      tooltip
+        .style("opacity", 1)
+        .html(
+          `<strong>${d.name}</strong><br>
+          Type: ${d.type}<br>
+          HP: ${d.hp}<br>
+          Price: $${d3.format(",")(d.retailPrice)}<br>
+          Weight: ${d.weight} lbs`
+        );
+    })
+    .on("mousemove", () => {
+      tooltip
+        .style("left", (d3.event.pageX + 10) + "px")
+        .style("top",  (d3.event.pageY + 10) + "px");
+    })
+    .on("mouseout", () => {
+      tooltip.style("opacity", 0);
+    });
 
     // 7. Color legend (Type)
     const legendColor = svg.append("g")
